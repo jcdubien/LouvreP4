@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+    {{ form_start(formOrder) }}
+    {{ form_widget(formOrder) }}
+
+
+    <button type="submit" class="btn btn-success">Envoyer</button>
+
+    {{ form_end(formOrder) }}
+
+
+
+{% endblock %}
