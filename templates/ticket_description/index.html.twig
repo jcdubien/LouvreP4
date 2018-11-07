@@ -8,13 +8,22 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {{ dump() }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/TicketDescriptionController.php'|file_link(0) }}">src/Controller/TicketDescriptionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/ticket_description/index.html.twig'|file_link(0) }}">templates/ticket_description/index.html.twig</a></code></li>
-    </ul>
+<div class="example-wrapper">
+    {{ form_start(formTicket) }}
+    {{ form_widget((formTicket)) }}
+    <button type="submit" class="btn btn-success">Envoyer</button>
+    {{ form_end(formTicket) }}
 </div>
+
+<script>
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'dd-mm-yyyy'
+        });
+    });
+</script>
+
 {% endblock %}

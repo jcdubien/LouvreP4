@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\louvreorder;
+use App\Entity\Orderlouvre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method louvreorder|null find($id, $lockMode = null, $lockVersion = null)
- * @method louvreorder|null findOneBy(array $criteria, array $orderBy = null)
- * @method louvreorder[]    findAll()
- * @method louvreorder[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Orderlouvre|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Orderlouvre|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Orderlouvre[]    findAll()
+ * @method Orderlouvre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OrderEntityRepository extends ServiceEntityRepository
+class OrderlouvreRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, louvreorder::class);
+        parent::__construct($registry, Orderlouvre::class);
     }
 
 //    /**
-//     * @return louvreorder[] Returns an array of louvreorder objects
+//     * @return Orderlouvre[] Returns an array of Orderlouvre objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class OrderEntityRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?louvreorder
+    public function findOneBySomeField($value): ?Orderlouvre
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.exampleField = :val')
