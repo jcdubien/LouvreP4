@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e4292fc-78aa-48e2-b0f1-4cb3a3ee6af9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/PaymentSuccess.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/payment_success.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/louvre.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/louvre.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ReservationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReservationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TicketDescriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TicketDescriptionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Orderlouvre.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Orderlouvre.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TicketLouvre.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TicketLouvre.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/OrderType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/OrderType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/TicketType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TicketType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reservation/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reservation/index.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="3e4292fc-78aa-48e2-b0f1-4cb3a3ee6af9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +72,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Entity/TicketLouvre.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
+            <state relative-caret-position="228">
+              <caret line="189" lean-forward="true" selection-start-line="189" selection-end-line="189" />
               <folding>
                 <element signature="e#30#62#0#PHP" expanded="true" />
               </folding>
@@ -454,18 +436,18 @@
       <workItem from="1543271976103" duration="924000" />
       <workItem from="1543366941360" duration="1732000" />
       <workItem from="1543454639725" duration="5153000" />
-      <workItem from="1543538656666" duration="642000" />
+      <workItem from="1543538656666" duration="737000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90741000" />
+    <option name="totallyTimeSpent" value="90836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25838926" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25838926" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -478,7 +460,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.329429" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -637,8 +619,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/TicketLouvre.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
+        <state relative-caret-position="228">
+          <caret line="189" lean-forward="true" selection-start-line="189" selection-end-line="189" />
           <folding>
             <element signature="e#30#62#0#PHP" expanded="true" />
           </folding>
