@@ -25,7 +25,8 @@ class OrderType extends AbstractType
             ->add('ticketLouvre', CollectionType::class, array(
                 'entry_type'   => TicketType::class,
                 'allow_add'    => true,
-                'allow_delete' => true))
+                'allow_delete' => true,
+                'by_reference' => false,))
 
         ;
     }

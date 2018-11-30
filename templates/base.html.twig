@@ -7,6 +7,7 @@
 
         <!-- Bootstrap Date-Picker Plugin -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
         {% block stylesheets %}<link href="{{ asset('css/main.css') }}" rel="stylesheet" />{% endblock %}
@@ -46,6 +47,11 @@
 
             {% block body %}
 
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
 
             {% endblock %}
 

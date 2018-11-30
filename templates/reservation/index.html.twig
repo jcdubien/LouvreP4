@@ -91,7 +91,17 @@
     </script>
 
     <br/>
-    <button type="submit" class="btn btn-success">Envoyer</button>
+
+
+    <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_HAIzVTbXuDr9O7TXd345a9Xn"
+            data-amount="999"
+            data-name="Louvre"
+            data-description="Payez vos billets d'entrée"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="fr">
+    </script>
 
     {{ form_end(formOrder) }}
 

@@ -19,8 +19,8 @@ class TicketType extends AbstractType
             ->add('firstName',TextType::class)
             ->add('lastName',TextType::class)
             ->add('birthDate',DateType::class,array ('widget' => 'choice',))
-            ->add('halfDay',CheckboxType::class)
-            ->add('reducedRate',CheckboxType::class)
+            ->add('halfDay',CheckboxType::class,array('label'=>'Demi-journée ?', 'required'=>'false'))
+            ->add('reducedRate',CheckboxType::class,array('label'=>'Prix réduit (justificatifs à fournir) ?', 'required'=>'false'))
             ->add('dateTicket',DateType::class,array ('widget' => 'choice',))
 
         ;

@@ -49,13 +49,6 @@ class Orderlouvre
     
 
     /**
-     * @ORM\Column(type="smallint")
-     *
-     * @Assert\Range(min=1 , max=10 , maxMessage="La saisie maximale autorisée est de 10 billets par commande")
-     */
-    private $ticketNumber;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\TicketLouvre", mappedBy="OrderLouvre", orphanRemoval=true , cascade="all")
      */
     private $ticketLouvre;
@@ -73,6 +66,10 @@ class Orderlouvre
      *
      */
     private $reference;
+
+
+
+
 
     public function __construct()
     {
@@ -132,17 +129,16 @@ class Orderlouvre
         return $this;
     }
 
-    public function getTotalPrice(): ?string
+    public function getTotalPrice()
     {
+        $price=0;
+
+
+
         return $this->totalPrice;
     }
 
-    public function setTotalPrice(string $totalPrice): self
-    {
-        $this->totalPrice = $totalPrice;
 
-        return $this;
-    }
 
     public function getTicketNumber(): ?int
     {

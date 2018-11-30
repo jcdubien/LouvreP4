@@ -58,7 +58,8 @@ class TicketLouvre
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Orderlouvre", inversedBy="ticketLouvre")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false , referencedColumnName="id")
+     *
      */
     private $OrderLouvre;
 
@@ -149,5 +150,44 @@ class TicketLouvre
         $this->OrderLouvre = $OrderLouvre;
 
         return $this;
+    }
+
+    public function getAge()
+    {
+        $now=new \DateTime();
+        $birthDate=new \DateTime($this->getBirthDate());
+        $age=$birthDate->diff($now);
+        return $age;
+
+    }
+
+    public function getTicketPrice()
+    {
+        $price=0;
+        $age=$this->getAge();
+
+        if ($age<4)
+            {
+                $price=0;
+            }
+        elseif ($age<12 or $age>60)
+            {
+                $price=8;
+            }
+        else if ($this->getReducedRate())
+            {
+                $price=10;
+
+            }
+        else ($price=12);
+
+        return $price;
+
+
+
+
+
+
+
     }
 }
