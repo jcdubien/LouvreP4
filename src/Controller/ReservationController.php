@@ -29,36 +29,35 @@ class ReservationController extends AbstractController
 
         $form->handleRequest($request);
 
-
-
-
-
         if($form->isSubmitted() && $form->isValid())
+
             {
 
-
-
-            if(!$order->getId())
+            /*if(!$order->getId())
                 {
                     $order->setDateOrder(new \DateTime());
                     $order->setTotalPrice(1);
                     $order->setReference('TEST');
                 }
 
-            $_SESSION['orderPrice']=$order->getTotalPrice();
+            /*$_SESSION['orderPrice']=$order->getTotalPrice();*/
 
-            dump($_SESSION['order']);
-
-
-                /*
+            $this->get('session')->set('orderPrice',$order->getTotalPrice());
+                 /*
                  * ajouter utilsation achat apres stockage en session .....
                  */
-            $manager->persist($order);
-            $manager->flush();
+            /*$manager->persist($order);
+            $manager->flush();*/
 
             $this->addFlash('success','Vos billets ont  bien été ajoutés !');
 
-            return $this->redirectToRoute('payment_success');
+
+
+
+            return $this->render('view_recap_order/index.html.twig', [
+                'tickets'=>$order->getTicketLouvre(),
+                'controller_name' =>'Recapitulatif de la commande'
+            ]);
 
 
 
@@ -67,6 +66,7 @@ class ReservationController extends AbstractController
         return $this->render('reservation/index.html.twig',
             [
                 'formOrder'=>$form->createView(),
+                'totalPrice'=>$order->getTotalPrice(),
                 'controller_name'=>'Passer une commande ...'
             ]);
 

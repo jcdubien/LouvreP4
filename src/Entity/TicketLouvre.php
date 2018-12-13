@@ -155,7 +155,7 @@ class TicketLouvre
     public function getAge()
     {
         $now=new \DateTime();
-        $birthDate=new \DateTime($this->getBirthDate());
+        $birthDate=$this->getBirthDate();
         $age=$birthDate->diff($now);
         return $age;
 
@@ -166,11 +166,11 @@ class TicketLouvre
         $price=0;
         $age=$this->getAge();
 
-        if ($age<4)
+        if ($age->y<4)
             {
                 $price=0;
             }
-        elseif ($age<12 or $age>60)
+        elseif ($age->y<12 or $age->y>60)
             {
                 $price=8;
             }
@@ -182,12 +182,6 @@ class TicketLouvre
         else ($price=12);
 
         return $price;
-
-
-
-
-
-
 
     }
 }

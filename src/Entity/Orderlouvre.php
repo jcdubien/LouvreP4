@@ -133,9 +133,14 @@ class Orderlouvre
     {
         $price=0;
 
+        foreach ($this->getTicketLouvre() as $ticket)
+        {
+            $price+=$ticket->getTicketPrice();
 
+        }
 
-        return $this->totalPrice;
+        return $price;
+
     }
 
 

@@ -4,13 +4,14 @@
 
 {% block body %}
 
+    <h2>Réservation : Vos coordonnées </h2>
+
     {{ form_start(formOrder) }}
     {{ form_widget(formOrder) }}
     {{ form_errors(formOrder) }}
 
     <div class="well">
         {# ... #}
-
 
         <a href="#" id="add_ticket" class="btn btn-success btn-sm">Ajouter un billet</a>
 
@@ -21,7 +22,8 @@
    mais si vous l'avez en local, changez simplement l'adresse. #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-    {# Voici le script en question : #}
+    {# Voici le script d'ajout de ticket : #}
+
     <script type="text/javascript">
         $(document).ready(function() {
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
@@ -74,7 +76,7 @@
             // La fonction qui ajoute un lien de suppression d'une catégorie
             function addDeleteLink($prototype) {
                 // Création du lien
-                var $deleteLink = $('<a href="#" class="btn btn-danger btn-sm">Supprimer</a>');
+                var $deleteLink = $('<a href="#" class="btn btn-danger btn-sm">Supprimer</a><br/>');
 
                 // Ajout du lien
                 $prototype.append($deleteLink);
@@ -92,17 +94,7 @@
 
     <br/>
 
-
-    <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_test_HAIzVTbXuDr9O7TXd345a9Xn"
-            data-amount="999"
-            data-name="Louvre"
-            data-description="Payez vos billets d'entrée"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="fr">
-    </script>
-
+    <button type="submit" class="btn btn-success">Envoyer</button>
     {{ form_end(formOrder) }}
 
 

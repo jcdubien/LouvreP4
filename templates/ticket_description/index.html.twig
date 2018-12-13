@@ -11,19 +11,15 @@
     {{ dump() }}
 
 <div class="example-wrapper">
+
+    <h2>Votre billet d'entrée : </h2>
+
     {{ form_start(formTicket) }}
     {{ form_widget((formTicket)) }}
     <button type="submit" class="btn btn-success">Envoyer</button>
+    <br/>
     {{ form_end(formTicket) }}
 </div>
 
-<script>
-    $(document).ready(function() {
-        // you may need to change this code if you are not using Bootstrap Datepicker
-        $('.js-datepicker').datepicker({
-            format: 'dd-mm-yyyy'
-        });
-    });
-</script>
 
 {% endblock %}
