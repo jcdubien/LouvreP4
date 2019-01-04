@@ -40,6 +40,10 @@ class TicketLouvre
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\Range(
+     *      min = "-120 years",
+     *      max = "now"
+     * )
      *
      */
     private $halfDay;
@@ -53,6 +57,10 @@ class TicketLouvre
      * @ORM\Column(type="datetime")
      * @Assert\Date()
      * @Assert\NotBlank()
+     * @Assert\Range(
+     *      min = "now",
+     *      max = "+3 months"
+     * )
      */
     private $dateTicket;
 

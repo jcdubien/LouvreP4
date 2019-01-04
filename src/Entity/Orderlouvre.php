@@ -62,10 +62,16 @@ class Orderlouvre
     private $dateOrder;
 
     /**
+     *
      * @ORM\Column(type="string", length=255)
      *
      */
     private $reference;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $chargeId;
 
 
 
@@ -208,6 +214,18 @@ class Orderlouvre
     public function setReference(string $reference): self
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getChargeId(): ?string
+    {
+        return $this->chargeId;
+    }
+
+    public function setChargeId(?string $chargeId): self
+    {
+        $this->chargeId = $chargeId;
 
         return $this;
     }

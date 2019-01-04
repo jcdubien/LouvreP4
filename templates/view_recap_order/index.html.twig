@@ -9,22 +9,43 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>{{ controller_name }}! ✅</h1>
+
     <h2>Voici un récapitulatif de votre commande</h2>
 
     {% for ticket in tickets %}
-        <h2>Identifiant : {{ticket.id }}</h2>
+
         <h2>Nom : {{ticket.LastName }}</h2>
         <h2>Prenom : {{ticket.FirstName}}</h2>
-        <h2>Demi-journee : {{ticket.HalfDay}}</h2>
-        <h2>Prix reduit : {{ticket.ReducedRate}}</h2>
+
+        {%  if ticket.HalfDay %}
+            <h2>Tarif demi journée</h2>
+        {% endif %}
+
+        {%  if ticket.ReducedRate %}
+            <h2>Tarif réduit ( Penser à présenter votre justificatif le jour de la visite ) </h2>
+        {% endif %}
+
         <h2>Date de visite : {{ticket.DateTicket|date('d,m,Y')}}</h2>
         <br/>
 
     {%  endfor %}
 
-
     {{ dump(app.session.get('orderPrice')) }}
+
+    <form action={{ path('payment_validation') }} method="POST">
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_HAIzVTbXuDr9O7TXd345a9Xn"
+                data-amount={{ app.session.get('orderPrice')*100}},
+                data-label="Payer par carte"
+                data-currency='EUR'
+                data-name="Louvre"
+                data-description="Widget"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto">
+        </script>
+    </form>
+
 
 
 
