@@ -12,6 +12,12 @@
 
     <h2>Voici un récapitulatif de votre commande</h2>
 
+    {% for flashMessage in app.session.flashbag.get('success') %}
+
+    {{ flashMessage }}
+
+    {% endfor %}
+
     {% for ticket in tickets %}
 
         <h2>Nom : {{ticket.LastName }}</h2>

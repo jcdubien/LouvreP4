@@ -28,9 +28,9 @@ class TicketDescriptionController extends AbstractController
 
 
 
-            $manager->persist($ticket);
+            //$manager->persist($ticket);
 
-            $manager->flush();
+            //$manager->flush();
 
             return $this->redirectToRoute('view_recap_order');
 

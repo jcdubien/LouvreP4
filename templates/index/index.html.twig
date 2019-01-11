@@ -11,6 +11,13 @@
 
         <br/>
     </div>
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+
+        {{ flashMessage }}
+
+    {% endfor %}
+
     <div class="row content" >
 
         <div class="col-4"><img src="img/index.jpg" alt="Photo du musée" height="400" width="350"></div>

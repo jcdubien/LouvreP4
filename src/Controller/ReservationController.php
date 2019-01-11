@@ -43,11 +43,11 @@ class ReservationController extends AbstractController
             /*$_SESSION['orderPrice']=$order->getTotalPrice();*/
 
             $this->get('session')->set('orderPrice',$order->getTotalPrice());
+            $this->get('session')->set('order',$order);
                  /*
                  * ajouter utilsation achat apres stockage en session .....
                  */
-            /*$manager->persist($order);
-            $manager->flush();*/
+            /*;*/
 
             $this->addFlash('success','Vos billets ont  bien été ajoutés !');
 

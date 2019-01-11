@@ -68,10 +68,7 @@ class Orderlouvre
      */
     private $reference;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $chargeId;
+
 
 
 
@@ -218,15 +215,5 @@ class Orderlouvre
         return $this;
     }
 
-    public function getChargeId(): ?string
-    {
-        return $this->chargeId;
-    }
 
-    public function setChargeId(?string $chargeId): self
-    {
-        $this->chargeId = $chargeId;
-
-        return $this;
-    }
 }
