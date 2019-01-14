@@ -3,20 +3,22 @@
 {% block title %}{{ controller_name }}{% endblock %}
 
 {% block body %}
-{{ dump() }}
+
 <style>
-
+    .flashmessage{color: #AA3333}
 </style>
-    <div class="head_block">
 
-        <br/>
-    </div>
+    <div class="flashmessage">
 
-    {% for flashMessage in app.session.flashbag.get('success') %}
+        {% for flashMessage in app.session.flashbag.get('success') %}
 
         {{ flashMessage }}
 
-    {% endfor %}
+        {% endfor %}
+
+    </div>
+
+    <br/>
 
     <div class="row content" >
 

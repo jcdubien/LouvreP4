@@ -1,3 +1,9 @@
 input::-webkit-calendar-picker-indicator{
     display: none;
 }
+
+.flashmessage {
+    text-align: center;
+    text-decoration: red;
+
+}

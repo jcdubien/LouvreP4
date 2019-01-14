@@ -6,6 +6,12 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .recap {
+        border: 1px solid black;
+        font-size:1em;
+        font-weight:bold;}
+    p.recap {font-size: 1em;}
+    fieldset.form-group legend.col-form-label.required {display:none;}
 </style>
 
 <div class="example-wrapper">
@@ -14,25 +20,29 @@
 
     <h2>Voici un récapitulatif de votre commande</h2>
 
-    {% for ticket in tickets %}
+    <div class="recap">
 
-        <h2>Nom : {{ticket.LastName }}</h2>
-        <h2>Prenom : {{ticket.FirstName}}</h2>
+        {% for ticket in tickets %}
 
-        {%  if ticket.HalfDay %}
-            <h2>Tarif demi journée</h2>
-        {% endif %}
+            <p>Nom : {{ticket.LastName }}</p>
+            <p>Prenom : {{ticket.FirstName}}</p>
 
-        {%  if ticket.ReducedRate %}
-            <h2>Tarif réduit ( Penser à présenter votre justificatif le jour de la visite ) </h2>
-        {% endif %}
+            {%  if ticket.HalfDay %}
+                <P>Tarif demi journée</P>
+            {% endif %}
 
-        <h2>Date de visite : {{ticket.DateTicket|date('d,m,Y')}}</h2>
-        <br/>
+            {%  if ticket.ReducedRate %}
+                <P>Tarif réduit ( Penser à présenter votre justificatif le jour de la visite ) </P>
+            {% endif %}
 
-        <h2>Montant total {% app.session.get('orderPrice')*100 %}</h2>
+            <p>Date de visite : {{ticket.DateTicket|date('d,m,Y')}}</p>
+            <br/>
+            <p>Montant total {% app.session.get('orderPrice')*100 %}</p>
 
-    {%  endfor %}
+        {%  endfor %}
+
+    </div>
+
 {% endblock %}
 
 

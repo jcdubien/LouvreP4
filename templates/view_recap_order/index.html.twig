@@ -31,7 +31,7 @@
             <h2>Tarif réduit ( Penser à présenter votre justificatif le jour de la visite ) </h2>
         {% endif %}
 
-        <h2>Date de visite : {{ticket.DateTicket|date('d,m,Y')}}</h2>
+        <h2>Date de visite : {{ticket.DateTicket|date('d/m/Y')}}</h2>
         <br/>
 
     {%  endfor %}
