@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ controller_name }}{% endblock %}
-
 {% block body %}
 
-    <h2>Réservation : Vos coordonnées </h2>
+    <style>
+        .btn {text-align: center;}
+        .col-form-label {display:none;}
+
+    </style>
+
+
+    <h2 style="text-align: center">Réservation : Vos coordonnées </h2>
 
     {{ form_start(formOrder) }}
     {{ form_widget(formOrder) }}

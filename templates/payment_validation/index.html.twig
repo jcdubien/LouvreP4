@@ -10,8 +10,10 @@
         border: 1px solid black;
         font-size:1em;
         font-weight:bold;}
-    p.recap {font-size: 1em;}
+    p.recap {font-size: 1em;
+    background-color: #AA3333;}
     fieldset.form-group legend.col-form-label.required {display:none;}
+    .comment { font-style: italic}
 </style>
 
 <div class="example-wrapper">
@@ -32,7 +34,8 @@
             {% endif %}
 
             {%  if ticket.ReducedRate %}
-                <P>Tarif réduit ( Penser à présenter votre justificatif le jour de la visite ) </P>
+                <P>Tarif réduit</P>
+                <p class="comment">( Pensez à présenter votre justificatif le jour de la visite ... ) </P>
             {% endif %}
 
             <p>Date de visite : {{ticket.DateTicket|date('d,m,Y')}}</p>

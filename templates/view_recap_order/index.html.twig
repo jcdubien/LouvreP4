@@ -3,42 +3,50 @@
 {% block title %}Hello {{ controller_name }}!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .recap {
+            border: 1px solid black;
+            font-size:1em;
+            font-weight:bold;
+            padding:10px;
+            background-color: lightgray;}
+        p.recap {font-size: 1em;
+            background-color: #AA3333;}
+        fieldset.form-group legend.col-form-label.required {display:none;}
+        .comment { font-style: italic}
+        .centeredblock{text-align:center;}
+    </style>
 
-    <h2>Voici un récapitulatif de votre commande</h2>
+<div class="recap">
 
-    {% for flashMessage in app.session.flashbag.get('success') %}
-
-    {{ flashMessage }}
-
-    {% endfor %}
+    <h2 class="centeredblock">Voici un récapitulatif de votre commande</h2>
 
     {% for ticket in tickets %}
 
-        <h2>Nom : {{ticket.LastName }}</h2>
-        <h2>Prenom : {{ticket.FirstName}}</h2>
+        <p>Nom : {{ticket.LastName }}</p>
+        <p>Prenom : {{ticket.FirstName}}</p>
 
         {%  if ticket.HalfDay %}
-            <h2>Tarif demi journée</h2>
+            <p>Tarif demi journée</p>
         {% endif %}
 
         {%  if ticket.ReducedRate %}
-            <h2>Tarif réduit ( Penser à présenter votre justificatif le jour de la visite ) </h2>
+            <p>Tarif réduit</p>
+            <p class="comment">( Pensez à présenter votre justificatif le jour de la visite ) </p>
         {% endif %}
 
-        <h2>Date de visite : {{ticket.DateTicket|date('d/m/Y')}}</h2>
-        <br/>
+        <p>Date de visite : {{ticket.DateTicket|date('d/m/Y')}}</p>
+        <hr/>
 
     {%  endfor %}
+        <p>Montant total : {{ app.session.get('order').totalPrice }} euros </p>
 
-    {{ dump(app.session.get('orderPrice')) }}
 
-    <form action={{ path('payment_validation') }} method="POST">
+
+    <form action={{ path('payment_validation') }} method="POST" class="centeredblock">
         <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="pk_test_HAIzVTbXuDr9O7TXd345a9Xn"

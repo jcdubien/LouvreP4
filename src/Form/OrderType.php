@@ -17,10 +17,10 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName',TextType::class)
-            ->add('lastName',TextType::class)
-            ->add('email',EmailType::class)
-            ->add('country',CountryType::class)
+            ->add('firstName',TextType::class,array('label'=>'Prénom'))
+            ->add('lastName',TextType::class,array('label'=>'Nom'))
+            ->add('email',EmailType::class,array('label'=>'Adresse mail'))
+            ->add('country',CountryType::class,array('label'=>'Pays de résidence','empty_data'=>'FR'))
 
             ->add('ticketLouvre', CollectionType::class, array(
                 'entry_type'   => TicketType::class,
