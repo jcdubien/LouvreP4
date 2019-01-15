@@ -21,14 +21,14 @@ class Orderlouvre
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2 , max=20 , minMessage="Trop court", maxMessage="Trop long")\length
+     * @Assert\Length(min=2 , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2 , max=20 , minMessage="Trop court", maxMessage="Trop long")\length
+     * @Assert\Length(min=2 , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $lastName;
@@ -56,7 +56,8 @@ class Orderlouvre
 
     /**
      * @ORM\Column(type="datetime")
-     *
+     * @Assert\GreaterThan("today")
+     * @Assert\NotBlank()
      *
      */
     private $dateOrder;

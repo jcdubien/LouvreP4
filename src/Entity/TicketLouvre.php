@@ -19,14 +19,14 @@ class TicketLouvre
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2 , max=20 , minMessage="Trop court", maxMessage="Trop long")\length
+     * @Assert\Length(min=2 , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2 , max=20 , minMessage="Trop court", maxMessage="Trop long")\length
+     * @Assert\Length(min=2 , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $firstName;
@@ -34,6 +34,9 @@ class TicketLouvre
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date()
+     * @Assert\Range(
+     *      min = "1900",
+     *      max = "today"
      * @Assert\NotBlank()
      */
     private $birthDate;

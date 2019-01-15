@@ -20,13 +20,14 @@ class OrderType extends AbstractType
             ->add('firstName',TextType::class,array('label'=>'Prénom'))
             ->add('lastName',TextType::class,array('label'=>'Nom'))
             ->add('email',EmailType::class,array('label'=>'Adresse mail'))
-            ->add('country',CountryType::class,array('label'=>'Pays de résidence','empty_data'=>'FR'))
+            ->add('country',CountryType::class,array('label'=>'Pays de résidence','empty_data'=>'FR','attr'=>['class'=>'endorder']))
 
             ->add('ticketLouvre', CollectionType::class, array(
                 'entry_type'   => TicketType::class,
                 'allow_add'    => true,
                 'allow_delete' => true,
-                'by_reference' => false,))
+                'by_reference' => false,
+                'attr'=>['class'=>'ticketlouvre']))
 
         ;
     }
