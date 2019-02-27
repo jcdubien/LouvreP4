@@ -26,59 +26,50 @@ class PaymentValidationController extends AbstractController
         // Token is created using Checkout or Elements!
         // Get the payment token ID submitted by the form:
 
-        if ($request->isMethod('POST'))
+        if ($request->isMethod('POST')) {
 
-        {
-
-            $error=false;
-            $order=$this->get('session')->get('order');
-            $now=new \DateTime();
-            $reference=md5($now->format('d-m-Y H:i:s'));
+            $error = false;
+            $order = $this->get('session')->get('order');
+            $now = new \DateTime();
+            $reference = md5($now->format('d-m-Y H:i:s'));
             $order->setDateOrder($now);
             $order->setReference($reference);
+            $overallPrice = $this->get('session')->get('orderPrice');
 
+            if ($overallPrice > 0) {
 
-            try
-                {
-
-                $token = $request->request->get('stripeToken');
-                dump($token);
-                $price = $this->get('session')->get('orderPrice');
-                \Stripe\Charge::create
+                try {
+                    $token = $request->request->get('stripeToken');
+                    dump($token);
+                    $price = $overallPrice;
+                    \Stripe\Charge::create
                     ([
-                        "amount" => $price*100,
+                        "amount" => $price * 100,
                         "currency" => "eur",
                         "source" => "tok_mastercard", // obtained with Stripe.js
                         "description" => "Billet Louvre"
                     ]);
+                } catch (\Stripe\Error\Card $e) {
+                    $error = 'Il y a eu un problème avec votre carte ' . $e->getMessage();
                 }
 
-            catch(\Stripe\Error\Card $e)
-
-                {
-
-                    $error = 'Il y a eu un problème avec votre carte '.$e->getMessage();
-
+                if (!$error) {
+                    $this->addFlash('success', 'Commmande effectuée');
+                    $manager->persist($order);
+                    $manager->flush();
+                    return $this->redirectToRoute('email');
                 }
+            }
 
-            if (!$error)
+            return $this->render('payment_validation/index.html.twig', [
 
-                {
+                'controller_name' => 'Paiement'
 
-                $this->addFlash('success', 'Commmande effectuée');
-                $manager->persist($order);
-                $manager->flush();
-                return $this->redirectToRoute('email');
-
-                }
-
-        }
-
-        return $this->render('payment_validation/index.html.twig', [
-
-            'controller_name' => 'Paiement'
+            ]);
+        } else {
             
-        ]);
-
+            $this->addFlash('error','Le montant ne peut pas être nul !');
+            return $this->redirectToRoute('reservation');
+        }
     }
 }

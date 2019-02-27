@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Validator\After14;
+use App\Validator\SundaysAndHolidays;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -50,14 +52,17 @@ class Orderlouvre
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\TicketLouvre", mappedBy="OrderLouvre", orphanRemoval=true , cascade="all")
+     *
+     * @Assert\Valid()
+     *
      */
     private $ticketLouvre;
 
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\GreaterThan("today")
-     * @Assert\NotBlank()
+     *
+     *
      *
      */
     private $dateOrder;

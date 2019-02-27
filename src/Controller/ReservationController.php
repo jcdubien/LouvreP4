@@ -24,51 +24,40 @@ class ReservationController extends AbstractController
 
     {
         $order=new Orderlouvre();
-
         $form=$this->createForm(OrderType::class,$order);
-
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
-
             {
-
-            /*if(!$order->getId())
-                {
-                    $order->setDateOrder(new \DateTime());
-                    $order->setTotalPrice(1);
-                    $order->setReference('TEST');
-                }
-
-            /*$_SESSION['orderPrice']=$order->getTotalPrice();*/
-
+            if ($order->getTotalPrice()<=0) {$this->redirectToRoute('error');}
             $this->get('session')->set('orderPrice',$order->getTotalPrice());
             $this->get('session')->set('order',$order);
-                 /*
-                 * ajouter utilsation achat apres stockage en session .....
-                 */
-            /*;*/
-
+            $this->get('session')->set('afficheFlash',true);
             $this->addFlash('success','Vos billets ont  bien été ajoutés !');
 
-
-
-
-            return $this->render('view_recap_order/index.html.twig', [
+            return $this->render('view_recap_order/index.html.twig',
+                [
                 'tickets'=>$order->getTicketLouvre(),
                 'controller_name' =>'Recapitulatif de la commande'
-            ]);
-
-
-
+                ]);
             }
 
-        return $this->render('reservation/index.html.twig',
-            [
-                'formOrder'=>$form->createView(),
-                'totalPrice'=>$order->getTotalPrice(),
-                'controller_name'=>'Passer une commande ...'
-            ]);
+        else
+            {
+            $flashBag = $this->get('session')->getFlashBag();
+            foreach ($flashBag->keys() as $type)
+                {
+                $flashBag->set($type, array());
+                }
+            $this->get('session')->set('afficheFlash',false);
+            }
+
+    return $this->render('reservation/index.html.twig',
+        [
+            'formOrder'=>$form->createView(),
+            'totalPrice'=>$order->getTotalPrice(),
+            'controller_name'=>'Passer une commande ...'
+        ]);
 
 
     }

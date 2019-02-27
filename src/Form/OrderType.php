@@ -19,8 +19,10 @@ class OrderType extends AbstractType
         $builder
             ->add('firstName',TextType::class,array('label'=>'Prénom'))
             ->add('lastName',TextType::class,array('label'=>'Nom'))
-            ->add('email',EmailType::class,array('label'=>'Adresse mail'))
-            ->add('country',CountryType::class,array('label'=>'Pays de résidence','empty_data'=>'FR','attr'=>['class'=>'endorder']))
+            ->add('email',EmailType::class,array(
+                'label'=>'Adresse mail'
+                ))
+            ->add('country',CountryType::class,array('label'=>'Pays de résidence','preferred_choices'=>['FR'],'attr'=>['class'=>'endorder']))
 
             ->add('ticketLouvre', CollectionType::class, array(
                 'entry_type'   => TicketType::class,

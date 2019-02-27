@@ -17,8 +17,6 @@ class IndexController extends AbstractController
 
         $order=new Orderlouvre();
 
-        $this->addFlash('success','Vos billets ont  bien été ajoutés !');
-
         return $this->render('index/index.html.twig', [
             'controller_name' => 'Accueil et présentation des activités',
         ]);

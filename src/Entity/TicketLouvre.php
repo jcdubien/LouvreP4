@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Validator\After14;
+use App\Validator\LessThanThousand;
+use App\Validator\SundaysAndHolidays;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -14,6 +17,8 @@ class TicketLouvre
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     *
      */
     private $id;
 
@@ -35,18 +40,15 @@ class TicketLouvre
      * @ORM\Column(type="datetime")
      * @Assert\Date()
      * @Assert\Range(
-     *      min = "1900",
-     *      max = "today"
+     *      min = "-130 years",
+     *      max = "now"
+     * )
      * @Assert\NotBlank()
      */
     private $birthDate;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\Range(
-     *      min = "-120 years",
-     *      max = "now"
-     * )
      *
      */
     private $halfDay;
@@ -64,6 +66,10 @@ class TicketLouvre
      *      min = "now",
      *      max = "+3 months"
      * )
+     * @After14()
+     * @SundaysAndHolidays()
+     * @LessThanThousand()
+     *
      */
     private $dateTicket;
 
@@ -190,7 +196,7 @@ class TicketLouvre
                 $price=10;
 
             }
-        else ($price=12);
+        else ($price=16);
 
         return $price;
 

@@ -24,19 +24,9 @@ class TicketDescriptionController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
 
-
-
-
-
-            //$manager->persist($ticket);
-
-            //$manager->flush();
-
             return $this->redirectToRoute('view_recap_order');
 
         }
-
-
 
         return $this->render('ticket_description/index.html.twig', [
             'formTicket'=>$form->createView(),
