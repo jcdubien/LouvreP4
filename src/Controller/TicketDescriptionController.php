@@ -14,25 +14,25 @@ class TicketDescriptionController extends AbstractController
     /**
      * @Route("/ticket/description", name="ticket_description")
      */
-    public function ticket(Request $request , ObjectManager $manager)
+    public function ticket(Request $request, ObjectManager $manager)
     {
         $ticket=new TicketLouvre();
 
-        $form=$this->createForm(TicketType::class,$ticket);
+        $form=$this->createForm(TicketType::class, $ticket);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-
+        if ($form->isSubmitted() && $form->isValid()) {
             return $this->redirectToRoute('view_recap_order');
-
         }
 
-        return $this->render('ticket_description/index.html.twig', [
+        return $this->render(
+            'ticket_description/index.html.twig',
+            [
             'formTicket'=>$form->createView(),
             'controller_name'=>"Description d'un billet"
 
-        ]);
-
+            ]
+        );
     }
 }

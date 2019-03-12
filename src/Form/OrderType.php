@@ -17,27 +17,35 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName',TextType::class,array('label'=>'Prénom'))
-            ->add('lastName',TextType::class,array('label'=>'Nom'))
-            ->add('email',EmailType::class,array(
+            ->add('firstName', TextType::class, array('label'=>'Prénom'))
+            ->add('lastName', TextType::class, array('label'=>'Nom'))
+            ->add(
+                'email',
+                EmailType::class,
+                array(
                 'label'=>'Adresse mail'
-                ))
-            ->add('country',CountryType::class,array('label'=>'Pays de résidence','preferred_choices'=>['FR'],'attr'=>['class'=>'endorder']))
+                )
+            )
+            ->add('country', CountryType::class, array('label'=>'Pays de résidence','preferred_choices'=>['FR'],'attr'=>['class'=>'endorder']))
 
-            ->add('ticketLouvre', CollectionType::class, array(
+            ->add(
+                'ticketLouvre',
+                CollectionType::class,
+                array(
                 'entry_type'   => TicketType::class,
                 'allow_add'    => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'attr'=>['class'=>'ticketlouvre']))
-
-        ;
+                'attr'=>['class'=>'ticketlouvre'])
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Orderlouvre::class,
-        ]);
+            ]
+        );
     }
 }

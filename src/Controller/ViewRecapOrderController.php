@@ -12,9 +12,11 @@ class ViewRecapOrderController extends AbstractController
      */
     public function index()
     {
-
-        return $this->render('view_recap_order/index.html.twig', [
+        return $this->render(
+            'view_recap_order/index.html.twig',
+            [
             'controller_name' => 'ViewRecapOrderController',
-        ]);
+            ]
+        );
     }
 }

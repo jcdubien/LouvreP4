@@ -17,21 +17,19 @@ class TicketLouvre
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     *
-     *
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2 , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
+     * @Assert\Length(min=2       , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2 , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
+     * @Assert\Length(min=2       , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $firstName;
@@ -49,7 +47,6 @@ class TicketLouvre
 
     /**
      * @ORM\Column(type="boolean")
-     *
      */
     private $halfDay;
 
@@ -59,7 +56,7 @@ class TicketLouvre
     private $reducedRate;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @Assert\Date()
      * @Assert\NotBlank()
      * @Assert\Range(
@@ -69,14 +66,12 @@ class TicketLouvre
      * @After14()
      * @SundaysAndHolidays()
      * @LessThanThousand()
-     *
      */
     private $dateTicket;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Orderlouvre", inversedBy="ticketLouvre")
-     * @ORM\JoinColumn(nullable=false , referencedColumnName="id")
-     *
+     * @ORM\JoinColumn(nullable=false                        , referencedColumnName="id")
      */
     private $OrderLouvre;
 
@@ -175,7 +170,6 @@ class TicketLouvre
         $birthDate=$this->getBirthDate();
         $age=$birthDate->diff($now);
         return $age;
-
     }
 
     public function getTicketPrice()
@@ -183,22 +177,18 @@ class TicketLouvre
         $price=0;
         $age=$this->getAge();
 
-        if ($age->y<4)
-            {
-                $price=0;
-            }
-        elseif ($age->y<12 or $age->y>60)
-            {
-                $price=8;
-            }
-        else if ($this->getReducedRate())
-            {
-                $price=10;
-
-            }
-        else ($price=16);
+        if ($age->y<4) {
+            $price=0;
+        } elseif ($age->y<12) {
+            $price=8;
+        } elseif ($age->y >= 60) {
+            $price=12;
+        } elseif ($this->getReducedRate()) {
+            $price=10;
+        } else {
+            ($price=16);
+        }
 
         return $price;
-
     }
 }

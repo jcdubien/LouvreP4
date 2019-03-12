@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Validator\After14;
+use App\Validator\BillNotNull;
 use App\Validator\SundaysAndHolidays;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,14 +24,14 @@ class Orderlouvre
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2 , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
+     * @Assert\Length(min=2       , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2 , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
+     * @Assert\Length(min=2       , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $lastName;
@@ -54,23 +55,19 @@ class Orderlouvre
      * @ORM\OneToMany(targetEntity="App\Entity\TicketLouvre", mappedBy="OrderLouvre", orphanRemoval=true , cascade="all")
      *
      * @Assert\Valid()
-     *
+     * @BillNotNull()
      */
     private $ticketLouvre;
 
 
     /**
      * @ORM\Column(type="datetime")
-     *
-     *
-     *
      */
     private $dateOrder;
 
     /**
      *
      * @ORM\Column(type="string", length=255)
-     *
      */
     private $reference;
 
@@ -142,14 +139,11 @@ class Orderlouvre
     {
         $price=0;
 
-        foreach ($this->getTicketLouvre() as $ticket)
-        {
+        foreach ($this->getTicketLouvre() as $ticket) {
             $price+=$ticket->getTicketPrice();
-
         }
 
         return $price;
-
     }
 
 
@@ -220,6 +214,4 @@ class Orderlouvre
 
         return $this;
     }
-
-
 }
