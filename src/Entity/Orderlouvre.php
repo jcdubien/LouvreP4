@@ -24,14 +24,22 @@ class Orderlouvre
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2       , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
+     * @Assert\Length(
+     *     min=2       ,
+     *     max=20 ,
+     *     minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères",
+     *     maxMessage="Trop long"
+     * )
      * @Assert\NotBlank()
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2       , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
+     * @Assert\Length(min=2       ,
+     *      max=20 ,
+     *      minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères",
+     *      maxMessage="Trop long")
      * @Assert\NotBlank()
      */
     private $lastName;
@@ -52,7 +60,12 @@ class Orderlouvre
     
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\TicketLouvre", mappedBy="OrderLouvre", orphanRemoval=true , cascade="all")
+     * @ORM\OneToMany(
+     *     targetEntity="App\Entity\TicketLouvre",
+     *      mappedBy="OrderLouvre",
+     *      orphanRemoval=true ,
+     *      cascade="all"
+     * )
      *
      * @Assert\Valid()
      * @BillNotNull()
@@ -145,6 +158,8 @@ class Orderlouvre
 
         return $price;
     }
+
+
 
 
 

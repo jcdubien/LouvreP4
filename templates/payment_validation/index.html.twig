@@ -40,7 +40,7 @@
 
             <p>Date de visite : {{ticket.DateTicket|date('d,m,Y')}}</p>
             <br/>
-            <p>Montant total {% app.session.get('orderPrice')*100 %}</p>
+            <p>Montant total {{ app.session.get('orderPrice') }} €</p>
 
         {%  endfor %}
 
@@ -49,3 +49,4 @@
 {% endblock %}
 
 
+</div>

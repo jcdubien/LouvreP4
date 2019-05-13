@@ -26,7 +26,12 @@ class OrderType extends AbstractType
                 'label'=>'Adresse mail'
                 )
             )
-            ->add('country', CountryType::class, array('label'=>'Pays de résidence','preferred_choices'=>['FR'],'attr'=>['class'=>'endorder']))
+            ->add(
+                'country',
+                CountryType::class,
+                array('label'=>'Pays de résidence','preferred_choices'=>['FR'],
+                    'attr'=>['class'=>'endorder'])
+            )
 
             ->add(
                 'ticketLouvre',

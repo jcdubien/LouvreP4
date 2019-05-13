@@ -28,39 +28,20 @@ class PaymentValidationController extends AbstractController
         // Get the payment token ID submitted by the form:
 
         if ($request->isMethod('POST')) {
-            $error = false;
+
             /**
- * @var Orderlouvre $order
-*/
+             * @var Orderlouvre $order
+             */
+
             $order = $this->get('session')->get('order');
             $now = new \DateTime();
             $reference = md5($now->format('d-m-Y H:i:s'));
             $order->setDateOrder($now);
             $order->setReference($reference);
-
-            try {
-                $token = $request->request->get('stripeToken');
-
-                $price = $order->getTotalPrice();
-                \Stripe\Charge::create(
-                    [
-                        "amount" => $price * 100,
-                        "currency" => "eur",
-                        "source" => "tok_mastercard", // obtained with Stripe.js
-                        "description" => "Billet Louvre"
-                        ]
-                );
-            } catch (\Stripe\Error\Card $e) {
-                $error = 'Il y a eu un problème avec votre carte ' . $e->getMessage();
-            }
-
-            if (!$error) {
-                $this->addFlash('success', 'Commmande effectuée');
-                $manager->persist($order);
-                $manager->flush();
-                return $this->redirectToRoute('email');
-            }
+            return $this->AssignPaymentStripe($request,$order);
         }
+
+
 
         return $this->render(
             'payment_validation/index.html.twig',
@@ -71,4 +52,32 @@ class PaymentValidationController extends AbstractController
                 ]
         );
     }
+
+    public function AssignPaymentStripe($request , $order) {
+        $manager=$this->getDoctrine()->getManager();
+        try {
+            $token = $request->request->get('stripeToken');
+            $error = false;
+            $price = $order->getTotalPrice();
+            \Stripe\Charge::create(
+                [
+                    "amount" => $price * 100,
+                    "currency" => "eur",
+                    "source" => "tok_mastercard", // obtained with Stripe.js
+                    "description" => "Billet Louvre"
+                ]
+            );
+        } catch (\Stripe\Error\Card $e) {
+            $error = 'Il y a eu un problème avec votre carte ' . $e->getMessage();
+        }
+
+        if (!$error) {
+            $this->addFlash('success', 'Commmande effectuée');
+            $manager->persist($order);
+            $manager->flush();
+            return $this->redirectToRoute('email');
+        }
+    }
+
+
 }

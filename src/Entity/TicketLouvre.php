@@ -22,14 +22,22 @@ class TicketLouvre
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2       , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
+     * @Assert\Length(
+     *     min=2 ,max=20 ,
+     *      minMessage="Trop court,vous devez rentrer au moins {{ limit }} caractères",
+     *      maxMessage="Trop long"
+     * )
      * @Assert\NotBlank()
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=2       , max=20 , minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères", maxMessage="Trop long")
+     * @Assert\Length(
+     *     min=2,max=20 ,
+     *      minMessage="Trop court , vous devez rentrer au moins {{ limit }} caractères",
+     *      maxMessage="Trop long"
+     * )
      * @Assert\NotBlank()
      */
     private $firstName;
@@ -104,18 +112,6 @@ class TicketLouvre
         return $this;
     }
 
-    public function getBirthDate(): ?\DateTimeInterface
-    {
-        return $this->birthDate;
-    }
-
-    public function setBirthDate(\DateTimeInterface $birthDate): self
-    {
-        $this->birthDate = $birthDate;
-
-        return $this;
-    }
-
     public function getHalfDay(): ?bool
     {
         return $this->halfDay;
@@ -124,18 +120,6 @@ class TicketLouvre
     public function setHalfDay(bool $halfDay): self
     {
         $this->halfDay = $halfDay;
-
-        return $this;
-    }
-
-    public function getReducedRate(): ?bool
-    {
-        return $this->reducedRate;
-    }
-
-    public function setReducedRate(bool $reducedRate): self
-    {
-        $this->reducedRate = $reducedRate;
 
         return $this;
     }
@@ -164,31 +148,55 @@ class TicketLouvre
         return $this;
     }
 
-    public function getAge()
-    {
-        $now=new \DateTime();
-        $birthDate=$this->getBirthDate();
-        $age=$birthDate->diff($now);
-        return $age;
-    }
-
     public function getTicketPrice()
     {
-        $price=0;
-        $age=$this->getAge();
+        $price = 0;
+        $age = $this->getAge();
 
-        if ($age->y<4) {
-            $price=0;
-        } elseif ($age->y<12) {
-            $price=8;
+        if ($age->y < 4) {
+            $price = 0;
+        } elseif ($age->y < 12) {
+            $price = 8;
         } elseif ($age->y >= 60) {
-            $price=12;
+            $price = 12;
         } elseif ($this->getReducedRate()) {
-            $price=10;
+            $price = 10;
         } else {
-            ($price=16);
+            ($price = 16);
         }
 
         return $price;
+    }
+
+    public function getAge()
+    {
+        $now = new \DateTime();
+        $birthDate = $this->getBirthDate();
+        $age = $birthDate->diff($now);
+        return $age;
+    }
+
+    public function getBirthDate(): ?\DateTimeInterface
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(\DateTimeInterface $birthDate): self
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    public function getReducedRate(): ?bool
+    {
+        return $this->reducedRate;
+    }
+
+    public function setReducedRate(bool $reducedRate): self
+    {
+        $this->reducedRate = $reducedRate;
+
+        return $this;
     }
 }
