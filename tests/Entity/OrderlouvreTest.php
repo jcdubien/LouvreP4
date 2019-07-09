@@ -8,7 +8,8 @@
 
 namespace App\Tests\Entity;
 
-use App\src\Entity\Orderlouvre;
+
+use App\Entity\Orderlouvre;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 
@@ -20,28 +21,33 @@ class OrderlouvreTest extends TestCase
     public function testSetReference()
     {
         $order=new Orderlouvre();
-        $result=$order->setReference('azerty');
 
-        $this->assertEquals($order->getReference(),$result);
+        $order->setReference('azerty');
+        $result=$order->getReference();
+
+        $this->assertEquals('azerty',$result);
     }
 
     public function testSetDateOrder()
     {
         $order=new Orderlouvre();
-        $faker=Factory::create();
-        $result=$order->setDateOrder($faker->dateTimeThisCentury);
+        $datetest=new \DateTime();
+        $datetest->setDate(2020,3,15);
 
-        $this->assertEquals($order->getDateOrder(),$result);
+        $order->setDateOrder($datetest);
+        $result=$order->getDateOrder();
+
+        $this->assertEquals($datetest,$result);
     }
 
     public function testSetFirstName()
     {
         $order=new Orderlouvre();
-        $faker=Factory::create();
-        $result=$order->setFirstName($faker->firstNameFemale);
 
+        $order->setFirstName('Christelle');
+        $result=$order->getFirstName();
 
-        $this->assertEquals($order->getFirstName(),$result);
+        $this->assertEquals('Christelle',$result);
     }
 
 

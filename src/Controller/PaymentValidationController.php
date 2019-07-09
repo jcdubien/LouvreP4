@@ -72,7 +72,7 @@ class PaymentValidationController extends AbstractController
         }
 
         if (!$error) {
-            $this->addFlash('success', 'Commmande effectuée');
+
             $manager->persist($order);
             $manager->flush();
             return $this->redirectToRoute('email');

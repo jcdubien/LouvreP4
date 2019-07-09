@@ -12,10 +12,14 @@ class ViewRecapOrderController extends AbstractController
      */
     public function index()
     {
+        /* @var array */
+        $tickets=$this->get('session')->get('order')->getTicketLouvre();
+
         return $this->render(
             'view_recap_order/index.html.twig',
             [
             'controller_name' => 'ViewRecapOrderController',
+                'tickets' => $tickets
             ]
         );
     }
