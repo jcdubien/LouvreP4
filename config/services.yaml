@@ -10,6 +10,9 @@ parameters:
     payment:
         currency: EUR
         decimal: true
+    childage: 4
+    teenage: 12
+    oldage: 60
 
 
 services:

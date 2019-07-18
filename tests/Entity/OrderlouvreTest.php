@@ -10,7 +10,6 @@ namespace App\Tests\Entity;
 
 
 use App\Entity\Orderlouvre;
-use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 
 
@@ -48,6 +47,17 @@ class OrderlouvreTest extends TestCase
         $result=$order->getFirstName();
 
         $this->assertEquals('Christelle',$result);
+    }
+
+    publiC function testSetLastName()
+    {
+        $order=new Orderlouvre();
+
+        $order->setLastName('DUBIEN');
+        $result=$order->getLastName();
+
+        $this->assertEquals('DUBIEN',$result);
+
     }
 
 

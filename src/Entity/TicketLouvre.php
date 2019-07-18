@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Controller\IndexController;
 use App\Validator\After14;
 use App\Validator\LessThanThousand;
 use App\Validator\SundaysAndHolidays;
@@ -150,14 +151,20 @@ class TicketLouvre
 
     public function getTicketPrice()
     {
+        /**
+         *Creating a configuration option for a value that you are never going to configure just isn't necessary.
+         * Our recommendation is to define these values as constants in your application.
+         * You could, for example, define a NUMBER_OF_ITEMS constant in the Post entity:
+         * https://symfony.com/doc/current/best_practices/configuration.html#parameter-naming
+         */
         $price = 0;
         $age = $this->getAge();
 
-        if ($age->y < 4) {
+        if ($age->y < IndexController::AGE_CHILD) {
             $price = 0;
-        } elseif ($age->y < 12) {
+        } elseif ($age->y < IndexController::AGE_TEEN) {
             $price = 8;
-        } elseif ($age->y >= 60) {
+        } elseif ($age->y >=IndexController::AGE_OLD) {
             $price = 12;
         } elseif ($this->getReducedRate()) {
             $price = 10;

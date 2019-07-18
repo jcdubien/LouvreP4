@@ -36,37 +36,32 @@ class ReservationController extends AbstractController
         $form = $this->formFactory->create(OrderType::class, $order);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-            {
-            if ($order->getTotalPrice() <= 0)
-                {
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($order->getTotalPrice() <= 0) {
                 $this->addFlash('error', 'Le montant ne peut pas être nul !');
                 return $this->redirectToRoute('reservation');
-                } else
-                {
+            } else {
                 $this->session->set('orderPrice', $order->getTotalPrice());
                 $this->session->set('order', $order);
                 $this->session->set('afficheFlash', true);
-                $this->session->getFlashBag()->add('success', 'Vos billets ont  bien été ajoutés !');
+                $this->session->getFlashBag()->add('success', 'Vos billets ont bien été ajoutés !');
                 return $this->redirectToRoute('view_recap_order');
-                }
-            } else
-            {
-            $flashBag = $this->get('session')->getFlashBag();
-            foreach ($flashBag->keys() as $type)
-                {
-                $flashBag->set($type, array());
-                }
-            $this->get('session')->set('afficheFlash', false);
             }
+        } else {
+            $flashBag = $this->get('session')->getFlashBag();
+            foreach ($flashBag->keys() as $type) {
+                $flashBag->set($type, array());
+            }
+            $this->get('session')->set('afficheFlash', false);
+        }
 
             return $this->render(
-            'reservation/index.html.twig',
-            [
-            'formOrder'=>$form->createView(),
-            'totalPrice'=>$order->getTotalPrice(),
-            'controller_name'=>'Passer une commande ...'
-            ]
-        );
+                'reservation/index.html.twig',
+                [
+                'formOrder'=>$form->createView(),
+                'totalPrice'=>$order->getTotalPrice(),
+                'controller_name'=>'Passer une commande ...'
+                ]
+            );
     }
 }
